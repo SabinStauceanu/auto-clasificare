@@ -11,27 +11,26 @@ pyautogui.FAILSAFE = True
 
 #Extragere date
 
-wb = xw.Book("C:\\Users\\CALITATE\\Desktop\\Document clasificare.xlsx").sheets['Sheet1']
+wb = xw.Book("C:\\Users\\SAMI\\Desktop\\Document clasificare.xlsx").sheets['Sheet1']
 
-lastCell = wb.range('G' + str(wb.cells.last_cell.row)).end('up').row
+lastCell = wb.range('H' + str(wb.cells.last_cell.row)).end('up').row
 
-nrAbatorizare = wb.range("C2:C" + str(lastCell)).value
-dataAbatorizare = wb.range("E2:E" + str(lastCell)).value
+nrAbatorizare = wb.range("H2:H" + str(lastCell)).value
+dataAbatorizare = wb.range("D2:D" + str(lastCell)).value
 greutate = wb.range("G2:G" + str(lastCell)).value
-calitate = wb.range("I2:I" + str(lastCell)).value
-nrLot = wb.range("J2:J" + str(lastCell)).value
-nrOrdine = wb.range("K2:K" + str(lastCell)).value
-nrLuni = wb.range("L2:L" + str(lastCell)).value
+calitate = wb.range("F2:F" + str(lastCell)).value
+nrLot = wb.range("C2:C" + str(lastCell)).value
+nrOrdine = wb.range("E2:E" + str(lastCell)).value
+nrLuni = wb.range("B2:B" + str(lastCell)).value
+#cantitate = wb.range("C2:C" + str(lastCell)).value
 
 today = date.today()
 formatted_date = today.strftime('%d.%m.%Y')
 
-
-
 #Introducere in P04
 
 subprocess.run([r"\\tango1\\install\\vif\\viferptactile-prod.bat"])
-time.sleep(5)
+time.sleep(6)
 pyautogui.moveTo(800,350)
 pyautogui.click()
 pyautogui.moveTo(1141,344)
@@ -65,65 +64,152 @@ time.sleep(0.5)
 pyautogui.click()
 time.sleep(5)
 pyautogui.moveTo(750, 289)
-time.sleep(0.5)
+time.sleep(1)
 pyautogui.click()
 time.sleep(5)
 
 data_curenta = datetime.strptime(formatted_date, "%d.%m.%Y")
 
-nrReferintaClicks = 10
+nrReferintaMin = 1
+nrReferinta1 = 1
+nrReferinta2 = 2
+nrReferinta3 = 3
+nrReferinta4 = 4
+nrReferinta5 = 5
+nrReferinta6 = 6
+nrReferinta7 = 7
+nrReferinta8 = 8
+nrReferinta9 = 9
+nrReferinta10 = 10
+nrReferintaMax = 10
+dejaIntroduse = [""]
+
 
 for i in range(len(greutate)):
+    # Se selecteaza cortalul daca numarul la categorie cantitate este 4
+
     # Schimbare data
-    data_tabel = datetime.strptime(dataAbatorizare[i].strftime('%d.%m.%Y'), "%d.%m.%Y")
+    data_tabel = datetime.strptime(dataAbatorizare[i], "%d.%m.%Y")
     if (data_curenta - data_tabel).days > 0:
         pyautogui.moveTo(495, 288)
-        time.sleep(0.5)
+        time.sleep(1)
         pyautogui.click(clicks=(data_curenta - data_tabel).days, interval=5)
         data_curenta = data_tabel
-        nrReferintaClicks = 10
+        nrReferintaMin = 1
+        nrReferinta1 = 1
+        nrReferinta2 = 2
+        nrReferinta3 = 3
+        nrReferinta4 = 4
+        nrReferinta5 = 5
+        nrReferinta6 = 6
+        nrReferinta7 = 7
+        nrReferinta8 = 8
+        nrReferinta9 = 9
+        nrReferinta10 = 10
+        nrReferintaMax = 10
     elif (data_curenta - data_tabel).days < 0:
         pyautogui.moveTo(750, 289)
         time.sleep(0.5)
         pyautogui.click(clicks=abs((data_curenta - data_tabel).days), interval=5)
         data_curenta = data_tabel
-        nrReferintaClicks = 10
+        nrReferintaMin = 1
+        nrReferinta1 = 1
+        nrReferinta2 = 2
+        nrReferinta3 = 3
+        nrReferinta4 = 4
+        nrReferinta5 = 5
+        nrReferinta6 = 6
+        nrReferinta7 = 7
+        nrReferinta8 = 8
+        nrReferinta9 = 9
+        nrReferinta10 = 10
+        nrReferintaMax = 10
 
+    # CLICK NECESAR IN CAZUL IN CARE SE SELECTEAZA A 10-A POZITIE SAU MAI JOS
+    necesaryClick = 0
 
     #Selectare numar abatorizare
-    if int(nrAbatorizare[i]) == 1:
-        pyautogui.moveTo(985, 390)
-    elif int(nrAbatorizare[i]) == 2:
+    time.sleep(1)
+    if int(nrAbatorizare[i]) == nrReferinta1:
+        pyautogui.moveTo(888,374)
+    elif int(nrAbatorizare[i]) == nrReferinta2:
         pyautogui.moveTo(890, 434)
-    elif int(nrAbatorizare[i]) == 3:
+    elif int(nrAbatorizare[i]) == nrReferinta3:
         pyautogui.moveTo(900, 482)
-    elif int(nrAbatorizare[i]) == 4:
+    elif int(nrAbatorizare[i]) == nrReferinta4:
         pyautogui.moveTo(911, 526)
-    elif int(nrAbatorizare[i]) == 5:
+    elif int(nrAbatorizare[i]) == nrReferinta5:
         pyautogui.moveTo(889, 568)
-    elif int(nrAbatorizare[i]) == 6:
+    elif int(nrAbatorizare[i]) == nrReferinta6:
         pyautogui.moveTo(884, 614)
-    elif int(nrAbatorizare[i]) == 7:
+    elif int(nrAbatorizare[i]) == nrReferinta7:
         pyautogui.moveTo(900, 663)
-    elif int(nrAbatorizare[i]) == 8:
+    elif int(nrAbatorizare[i]) == nrReferinta8:
         pyautogui.moveTo(900, 702)
-    elif int(nrAbatorizare[i]) == 9:
+    elif int(nrAbatorizare[i]) == nrReferinta9:
         pyautogui.moveTo(900, 750)
-    elif int(nrAbatorizare[i]) == 10:
-        pyautogui.moveTo(900, 795)
-    elif int(nrAbatorizare[i]) > 10:
+    elif int(nrAbatorizare[i]) == nrReferinta10:
+        pyautogui.moveTo(879, 797)
+        necesaryClick = 1
+    elif int(nrAbatorizare[i]) > nrReferintaMax:
         pyautogui.moveTo(1285, 780)
-        pyautogui.click(clicks=int(nrAbatorizare[i])-int(nrReferintaClicks), interval=0.1)
-        pyautogui.moveTo(900, 795)
-        nrReferintaClicks = nrAbatorizare[i]
+        pyautogui.click(clicks=int(nrAbatorizare[i])-int(nrReferintaMax), interval=0.1)
+        pyautogui.moveTo(879, 797)
+        nrReferintaMin = nrReferintaMin + (int(nrAbatorizare[i])-int(nrReferintaMax))
+        nrReferinta1 = nrReferinta1 + (int(nrAbatorizare[i]) - int(nrReferintaMax))
+        nrReferinta2 = nrReferinta2 + (int(nrAbatorizare[i]) - int(nrReferintaMax))
+        nrReferinta3 = nrReferinta3 + (int(nrAbatorizare[i]) - int(nrReferintaMax))
+        nrReferinta4 = nrReferinta4 + (int(nrAbatorizare[i]) - int(nrReferintaMax))
+        nrReferinta5 = nrReferinta5 + (int(nrAbatorizare[i]) - int(nrReferintaMax))
+        nrReferinta6 = nrReferinta6 + (int(nrAbatorizare[i]) - int(nrReferintaMax))
+        nrReferinta7 = nrReferinta7 + (int(nrAbatorizare[i]) - int(nrReferintaMax))
+        nrReferinta8 = nrReferinta8 + (int(nrAbatorizare[i]) - int(nrReferintaMax))
+        nrReferinta9 = nrReferinta9 + (int(nrAbatorizare[i]) - int(nrReferintaMax))
+        nrReferinta10 = nrReferinta10 + (int(nrAbatorizare[i]) - int(nrReferintaMax))
+        nrReferintaMax = nrAbatorizare[i]
+        necesaryClick = 1
+    elif int(nrAbatorizare[i]) < nrReferintaMin:
+        pyautogui.moveTo(1287, 396)
+        pyautogui.click(clicks= int(nrReferintaMin) - int(nrAbatorizare[i]), interval=0.1)
+        pyautogui.moveTo(888,374)
+        nrReferintaMax = nrReferintaMax - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferinta1 = nrReferinta1 - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferinta2 = nrReferinta2 - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferinta3 = nrReferinta3 - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferinta4 = nrReferinta4 - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferinta5 = nrReferinta5 - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferinta6 = nrReferinta6 - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferinta7 = nrReferinta7 - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferinta8 = nrReferinta8 - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferinta9 = nrReferinta9 - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferinta10 = nrReferinta10 - (int(nrReferintaMin) - int(nrAbatorizare[i]))
+        nrReferintaMin = nrAbatorizare[i]
+
+    # Scoatere din fabricatie daca a fost introduse
+
+    #if len(dejaIntroduse) > 0:
+    #    for j in range(len(dejaIntroduse)):
+    #        if nrAbatorizare[i] == dejaIntroduse[j]:
+    #            pyautogui.moveTo(1397, 596)
+    #            time.sleep(0.5)
+    #            pyautogui.click()
+    #            pyautogui.moveTo(989, 621)
+    #            time.sleep(0.5)
+    #            pyautogui.click()
+    #            time.sleep(5)
+
+
+
     pyautogui.click()
     pyautogui.moveTo(1400, 500)
     pyautogui.click()
 
     #Completare cantitate si numar carcase
+    time.sleep(1)
     pyautogui.moveTo(1175, 620)
     time.sleep(0.5)
     pyautogui.click()
+    time.sleep(1)
     cantitate = list(str(int(greutate[i])))
     for j in range(len(cantitate)):
         if cantitate[j] == "1":
@@ -146,7 +232,6 @@ for i in range(len(greutate)):
             pyautogui.moveTo(1020, 370)
         elif cantitate[j] == "0":
             pyautogui.moveTo(880, 580)
-        time.sleep(0.5)
         pyautogui.click()
     pyautogui.moveTo(950, 750)
     pyautogui.click()
@@ -166,8 +251,9 @@ for i in range(len(greutate)):
 
     #Completare categorie carcasa
     pyautogui.moveTo(800, 315)
-    time.sleep(0.5)
+    time.sleep(1.5)
     pyautogui.click()
+    time.sleep(1.5)
     for j in range(len(listCalitate)):
         if listCalitate[j] == "A":
             pyautogui.moveTo(700, 454)
@@ -182,7 +268,7 @@ for i in range(len(greutate)):
         elif listCalitate[j] == "O":
             pyautogui.moveTo(1015, 520)
         elif listCalitate[j] == "U":
-            pyautogui.moveTo(765, 975)
+            pyautogui.moveTo(765, 587)
         elif listCalitate[j] == "E":
             pyautogui.moveTo(945, 453)
         elif listCalitate[j] == "R":
@@ -191,17 +277,12 @@ for i in range(len(greutate)):
             pyautogui.moveTo(905, 451)
         elif listCalitate[j] == "+":
             pyautogui.moveTo(1285, 660)
-            time.sleep(0.5)
             pyautogui.click()
+            time.sleep(0.5)
             pyautogui.moveTo(835, 590)
-            time.sleep(0.5)
             pyautogui.click()
+            time.sleep(0.5)
             pyautogui.moveTo(1285, 660)
-            time.sleep(0.5)
-            pyautogui.click()
-            pyautogui.moveTo(1285, 660)
-            time.sleep(0.5)
-            pyautogui.click()
         elif listCalitate[j] == "-":
             pyautogui.moveTo(1188, 593)
         elif listCalitate[j] == "1":
@@ -214,7 +295,6 @@ for i in range(len(greutate)):
             pyautogui.moveTo(877, 381)
         elif listCalitate[j] == "5":
             pyautogui.moveTo(944, 379)
-        time.sleep(0.5)
         pyautogui.click()
     pyautogui.moveTo(1140, 770)
     time.sleep(0.5)
@@ -227,7 +307,7 @@ for i in range(len(greutate)):
     pyautogui.moveTo(800, 315)
     time.sleep(0.5)
     pyautogui.click()
-    time.sleep(1)
+    time.sleep(0.5)
     for j in range(len(listNrLot)):
         if listNrLot[j] == "1":
             pyautogui.moveTo(667, 381)
@@ -261,7 +341,7 @@ for i in range(len(greutate)):
     pyautogui.moveTo(800, 315)
     time.sleep(0.5)
     pyautogui.click()
-    time.sleep(1)
+    time.sleep(0.5)
     for j in range(len(listNrOrdine)):
         if listNrOrdine[j] == "1":
             pyautogui.moveTo(667, 381)
@@ -295,7 +375,7 @@ for i in range(len(greutate)):
     pyautogui.moveTo(800, 315)
     time.sleep(0.5)
     pyautogui.click()
-    time.sleep(1)
+    time.sleep(0.5)
     for j in range(len(listNrLuni)):
         if listNrLuni[j] == "1":
             pyautogui.moveTo(667, 381)
@@ -338,12 +418,23 @@ for i in range(len(greutate)):
 
     #Iesire din fabricatie
     pyautogui.moveTo(1409,591)
-    time.sleep(1)
+    time.sleep(1.2)
     pyautogui.click()
     pyautogui.moveTo(988,616)
     time.sleep(1)
     pyautogui.click()
     pyautogui.moveTo(1404,160)
-    time.sleep(0.5)
+    time.sleep(1)
     pyautogui.click()
     time.sleep(5)
+
+    #Adaugare in lista de introduse
+    dejaIntroduse.append(nrAbatorizare[i])
+
+    if necesaryClick == 1:
+        pyautogui.moveTo(1287, 396)
+        time.sleep(0.5)
+        pyautogui.click()
+
+pyautogui.hotkey("alt","f4")
+pyautogui.hotkey("alt","f4")
