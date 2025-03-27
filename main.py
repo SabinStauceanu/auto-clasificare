@@ -18,6 +18,7 @@ calitate = wb.range("E2:E" + str(lastCell)).value
 nrLot = wb.range("C2:C" + str(lastCell)).value
 nrOrdine = wb.range("D2:D" + str(lastCell)).value
 nrLuni = wb.range("B2:B" + str(lastCell)).value
+sex_rasa = wb.range("G2:G" + str(lastCell)).value
 
 # Introducere in P04
 
@@ -262,7 +263,26 @@ for i in range(len(greutate)):
     pyautogui.moveTo(800, 315)
     time.sleep(1)
     pyautogui.click()
-    pyautogui.moveTo(1030, 490)
+    if greautate[i] > 0 and greautate[i] <= 160 and nrLuni[i] >= 24:
+        pyautogui.moveTo(600, 285)
+    elif greautate[i] >= 161 and greautate[i] <= 200 and nrLuni[i] >= 24:
+        pyautogui.moveTo(800, 285)
+    elif greautate[i] >= 201 and greautate[i] <= 250 and nrLuni[i] >= 24:
+        pyautogui.moveTo(1000, 285)
+    elif greautate[i] >= 251 and greautate[i] <= 300 and nrLuni[i] >= 24:
+        pyautogui.moveTo(1220, 285)
+    elif greautate[i] >= 301 and greautate[i] <= 350 and nrLuni[i] >= 24:
+        pyautogui.moveTo(600, 385)
+    elif greautate[i] >= 351 and nrLuni[i] >= 24:
+        pyautogui.moveTo(800, 385)
+    elif sex_rasa[i] == "B":
+        pyautogui.moveTo(1000, 385)
+    elif nrLuni[i] < 24 and sex_rasa == "F":
+        pyautogui.moveTo(600, 500)
+    elif greautate[i] <= 200 and nrLuni[i] < 24 and sex_rasa == "M":
+        pyautogui.moveTo(800, 500)
+    elif greautate[i] >= 201 and nrLuni[i] < 24 and sex_rasa == "M":
+        pyautogui.moveTo(1000, 500)
     time.sleep(0.5)
     pyautogui.click()
     pyautogui.moveTo(1258, 840)
